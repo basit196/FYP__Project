@@ -309,9 +309,10 @@ const Table = ({ data, headData, type }) => {
       </tr>
     ));
   }
-
+git 
   return (
     <div className="table-content">
+      <div></div>
       <div className="table-container">
         <div className="table-wrapper">
           <table>
