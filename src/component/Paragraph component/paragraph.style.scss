@@ -1,0 +1,25 @@
+@import "../../component/utilities/mixin.scss";
+
+.text-container {
+    display: flex;
+
+    .text {
+        font-size: 1.2rem;
+        text-align: justify;
+        line-break: strict;
+        line-height: 1.6;
+        word-wrap: break-word;
+
+        @include medium {
+            font-size: 16px;
+        }
+
+        @include small1 {
+            font-size: 14px;
+        }
+
+        @include small4 {
+            font-size: 12px;
+        }
+    }
+}

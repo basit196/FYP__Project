@@ -1,0 +1,209 @@
+@import '../../../component/utilities/colors.scss';
+@import "../../../component/utilities/box-shadow.scss";
+
+
+.dashboard-container {
+    display: flex;
+    height: 100%;
+
+
+    .sidebar {
+        display: flex;
+        flex-direction: column;
+        gap: 5rem;
+        align-items: center;
+        width: 16rem;
+        background-color: $Color-Primary;
+        color: $Color-White;
+        padding: 3rem 0;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 999;
+        box-shadow: $Box-Shadow-dark;
+
+        &-container {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            width: 100%;
+            gap: 1rem;
+        }
+
+        &-link {
+            color: $Color-White;
+            display: flex;
+            padding: .6rem 1.5rem;
+            cursor: pointer;
+            gap: .8rem;
+            align-items: center;
+
+            &:hover {
+                background-color: $Color-bg;
+            }
+        }
+
+    }
+
+    .sidebar-active {
+        background-color: $Color-bg;
+    }
+
+    .sidebar-logo-container {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+
+    .sidebar-logo {
+        height: auto;
+        width: 8rem;
+    }
+
+    .main {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        height: 100%;
+        overflow: hidden;
+
+        .profile {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            background-color: $Color-Secondary;
+            padding: .8rem 2rem;
+            position: fixed;
+            top: 0;
+            right: 0;
+            height: 5.6rem;
+            z-index: 999;
+            width: calc(100% - 16rem);
+            box-shadow: $Box-Shadow-dark;
+
+
+
+            .profile-info {
+                display: flex;
+                align-items: center;
+                gap: 1.2rem;
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 50%;
+                    object-fit: cover;
+
+
+                }
+
+                .profile-text {
+                    color: $Color-bg;
+                    text-transform: capitalize;
+                    font-size: 1rem;
+
+                }
+            }
+
+            .profile-image-container {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 3rem;
+                height: 3rem;
+            }
+
+            .profile-icon {
+                font-size: 1.875rem;
+                color: $Color-Black;
+                cursor: pointer;
+            }
+        }
+
+        .content {
+            h1 {
+                font-size: 1.5rem;
+                margin-bottom: 0.625rem;
+            }
+
+            p {
+                font-size: 1rem;
+                color: #666;
+            }
+        }
+
+        &-content {
+            flex-grow: 1;
+            position: absolute;
+            top: 5.6rem;
+            left: 16rem;
+            height: calc(100% - 5.6rem);
+            width: calc(100% - 16rem);
+            overflow-y: hidden;
+            scrollbar-width: none;
+            background-color: whitesmoke;
+        }
+    }
+}
+
+
+
+.logoutbtn {
+
+    a {
+        padding: 0.7rem 1rem;
+        font-size: 1rem;
+        color: #ffffff;
+        transition: all 0.1s;
+
+
+        &:hover {
+            background-color: #6868685c;
+        }
+    }
+}
+
+
+.empty-profile-image {
+    position: relative;
+    width: 100%;
+    height: 100%;
+
+
+}
+
+.navigation-input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.custom-file-upload {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
+    position: absolute;
+    top: 89%;
+    left: 93%;
+    transform: translate(-50%, -50%);
+    justify-content: center;
+    align-items: center;
+
+    &::after {
+        content: "";
+        display: block;
+        width: 1rem;
+        height: 1px;
+        background-color: white;
+    }
+
+}
+
+.upload-icon {
+    font-size: .8rem;
+    fill: none;
+    color: $Color-White;
+}

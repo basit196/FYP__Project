@@ -1,0 +1,87 @@
+@import '../../../component/utilities/colors.scss';
+@import "../../../component/utilities/mixin.scss";
+
+.idea-page-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    .ideas-text-container {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        padding: 3rem 4rem;
+
+        @include medium {
+            padding: 20px 20px;
+        }
+
+        @include small4 {
+            row-gap: 10px;
+        }
+
+
+    }
+
+    .text-container {
+        padding: 0 10rem;
+
+        @include medium {
+            padding: 0 100px;
+        }
+
+        @include small2 {
+            padding: 0 80px;
+        }
+
+        @include small3 {
+            padding: 0 40px;
+        }
+    }
+
+
+
+    .idea-book-images-container {
+        display: flex;
+        flex-direction: column;
+        background-image: linear-gradient(to bottom right, $Color-Grey, $Color-Blue, $Color-Grey);
+        align-items: center;
+        padding: 3rem 0 1rem 0;
+        height: 100%;
+        row-gap: 50px;
+        justify-content: space-between;
+
+        @include medium4 {
+            row-gap: 30px;
+        }
+    }
+
+    .Explore-Button {
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-end;
+    }
+
+    .Expand-button {
+        display: flex;
+        align-items: center;
+        font-size: 1.4rem;
+        font-weight: 600;
+        color: $Color-White;
+        word-spacing: 2px;
+        transition: all 0.1s;
+        gap: 1rem;
+
+        @include medium4 {
+            font-size: 18px;
+        }
+
+        &:hover {
+            color: $Color-Primary;
+        }
+
+
+    }
+
+}

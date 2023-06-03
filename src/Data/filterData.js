@@ -1,0 +1,55 @@
+export const FilterData = [
+  {
+    id: "1",
+    label: "Year",
+    value: "Year",
+    children: [
+      { value: null, label: "Year" },
+      { value: "2013", label: "2013" },
+      { value: "2014", label: "2014" },
+      { value: "2015", label: "2015" },
+      { value: "2016", label: "2016" },
+      { value: "2017", label: "2017" },
+      { value: "2018", label: "2018" },
+      { value: "2019", label: "2019" },
+      { value: "2020", label: "2020" },
+      { value: "2021", label: "2021" },
+      { value: "2022", label: "2022" },
+      { value: "2023", label: "2023" },
+    ],
+  },
+  {
+    id: "2",
+    label: "Project Category",
+    value: "Project Category",
+    children: [
+      { value: null, label: "Project Category" },
+      { value: "Health", label: "Health" },
+      { value: "Education", label: "Education" },
+      { value: "Transport", label: "Transport" },
+      { value: "Food", label: "Food" },
+    ],
+  },
+  {
+    id: "3",
+    label: "Department",
+    value: "Department",
+    children: [
+      { value: null, label: "Department" },
+      { value: "CS", label: "CS" },
+      { value: "SE", label: "SE" },
+    ],
+  },
+  {
+    id: "4",
+    label: "Project Type",
+    value: "Project Type",
+    children: [
+      { value: null, label: "Project Type" },
+      { value: "Web based", label: "Web based" },
+      { value: "Mobile based", label: "Mobile based" },
+      { value: "Hardware based", label: "Hardware based" },
+      { value: "Research based", label: "Research based" },
+    ],
+  },
+];

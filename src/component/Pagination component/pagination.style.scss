@@ -1,0 +1,35 @@
+@import '../../component/utilities/colors.scss';
+
+.pagination {
+    display: flex;
+    background-color: $Color-Grey;
+    height: 3rem;
+    border-radius: 3rem;
+
+    .page-number {
+        display: flex;
+        font-size: 1rem;
+        list-style: none;
+        cursor: pointer;
+        padding: 0 1.5rem;
+        height: 100%;
+        align-items: center;
+        justify-content: center;
+        color: $Color-White;
+
+        &:hover,
+        &.selected {
+            background-color: $Color-bg;
+            color: $Color-White;
+        }
+
+        &.pre,
+        &.next {
+            &:hover {
+                color: $Color-bg ;
+                background-color: transparent;
+            }
+        }
+    }
+
+}

@@ -1,0 +1,116 @@
+@import "../../../component/utilities/colors.scss";
+@import "../../../component/utilities/mixin.scss";
+@import "../../../component/utilities/box-shadow.scss";
+
+.register-user {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    width: 81%;
+    background-color: #ffffff;
+    gap: 2rem;
+    padding: 2.5rem 3.5rem;
+    box-shadow: $Box-Shadow-light;
+
+    &-container {
+        display: flex;
+        justify-content: center;
+        min-height: 100%;
+        padding: 3rem 10rem;
+        overflow-y: auto;
+    }
+
+    &-form {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1.5rem;
+        width: 100%;
+    }
+
+
+    &-input {
+        padding: .8rem;
+        border: 1px solid $Color-Grey;
+        border-radius: .2rem;
+        font-size: 1rem;
+        width: 100%;
+
+
+        &:focus {
+            outline: none;
+            box-shadow: $Box-Shadow-light ;
+        }
+    }
+
+    &-dropdown {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    &-button {
+        padding: .8rem 2rem;
+        background-color: $Color-Primary;
+        border: none;
+        border-radius: 4px;
+        font-size: 1rem;
+        color: $Color-White;
+        cursor: pointer;
+        box-shadow: $dashboard-card-box-shawdow ;
+
+        &:hover {
+            background-color: $Color-Blue;
+        }
+    }
+}
+
+.Role-drop-down {
+    width: 12rem;
+}
+
+.user-registered {
+    position: absolute;
+    bottom: 2rem;
+    font-size: 1rem;
+    text-transform: capitalize;
+    background-color: rgba(227, 253, 235, 1);
+    color: rgba(60, 118, 61, 1);
+    border: 1px solid rgba(38, 179, 3, 1);
+    padding: .6rem 1rem;
+    border-radius: 4px;
+    animation: moveUp .4s forwards;
+
+}
+
+@keyframes moveUp {
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(-100px);
+    }
+}
+
+.radio-btn {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+}
+
+.radio-btn input[type="radio"] {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.username-input {
+    width: 100%;
+}
+
+.invaild-username {
+    font-size: .8rem;
+    color: red;
+}

@@ -1,0 +1,17 @@
+@import '../../component/utilities/colors.scss';
+
+.filter-container {
+    display: flex;
+    gap: 2.5rem;
+    z-index: 99999;
+}
+
+.select-drop-down::-webkit-scrollbar {
+    display: none;
+}
+
+.select-drop-down {
+    width: 12rem;
+    color: $Color-bg;
+
+}

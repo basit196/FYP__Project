@@ -1,0 +1,37 @@
+@import '../../../component/utilities/colors.scss';
+@import "../../../component/utilities/box-shadow.scss";
+
+.DashboardPage {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 3rem 2rem;
+    gap: 2rem;
+
+    &-heading {
+        text-transform: uppercase;
+        word-spacing: 3px;
+        letter-spacing: 1px;
+        background-color: $Color-White;
+        padding: 1.5rem 2rem;
+        color: $Color-Dark-Grey;
+        box-shadow: $Box-Shadow-light;
+        border-radius: 1.5rem;
+        font-size: 1.2rem;
+
+        h3 {
+            font-weight: bolder;
+        }
+    }
+
+    &-content {
+        display: flex;
+        align-items: center;
+        height: 100%;
+        background-color: $Color-White;
+        box-shadow: $Box-Shadow-light;
+        padding: 1.5rem 2rem;
+        border-radius: 1.5rem;
+
+    }
+}

@@ -1,0 +1,17 @@
+.expand-more {
+    display: flex;
+    flex-direction: column;
+    padding: 4rem 4rem;
+    gap: 8rem;
+}
+
+.expand-more-container {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+}
+
+.expand-more-item {
+    display: flex;
+    gap: 3rem;
+}

@@ -1,0 +1,32 @@
+@import '../../component/utilities/colors.scss';
+
+.learnmore {
+    display: flex;
+    flex-direction: column;
+
+    &-content {
+        padding: 4rem 4rem;
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;
+    }
+
+    &-abstract {
+        border-bottom: 1px solid $Color-Grey;
+        padding-bottom: 1rem;
+    }
+
+    &-supervisor-name {
+        display: flex;
+        align-items: center;
+        color: $Color-Dark-Grey;
+        font-size: 1rem;
+        gap: .5rem;
+
+    }
+
+    &-supervisor-paragraph {
+        color: $Color-Secondary;
+        font-size: 1.2rem;
+    }
+}

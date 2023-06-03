@@ -1,0 +1,39 @@
+@import '../../component/utilities/colors.scss';
+@import "../../component/utilities/box-shadow.scss";
+
+.search-input {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    align-self: flex-end;
+    border: 1px solid $Color-Grey;
+    padding: .5rem 1rem;
+    border-radius: 1rem;
+
+
+
+
+
+    input {
+        border: none;
+        font-size: 1rem;
+        flex: 1;
+        color: $Color-Dark-Grey;
+
+        &::placeholder {
+            color: $Color-Light-Grey;
+
+        }
+
+        &:focus {
+            outline: none;
+        }
+
+
+    }
+
+    &-icon {
+        color: $Color-Light-Grey;
+    }
+
+}

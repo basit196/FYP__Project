@@ -1,0 +1,16 @@
+@import '../../component/utilities/colors.scss';
+footer {
+    background-color:$Color-Black;
+    color: $Color-White;
+    padding: 20px;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-content p {
+    margin: 0;
+}

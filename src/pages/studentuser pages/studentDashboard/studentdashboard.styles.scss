@@ -1,0 +1,52 @@
+@import "../../../component/utilities/colors.scss";
+@import "../../../component/utilities/box-shadow.scss";
+.deadline-announcement-container{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 4rem 2rem;
+}
+.deadline-announcement {
+    display: flex;
+    background-color:$Color-White;
+    padding: 1rem;
+    gap: 1rem;
+    border-radius: 8px;
+    box-shadow: $dashboard-card-box-shawdow;
+
+    .announcement-icon {
+        flex: 0 0 auto;
+        font-size: 24px;
+        color:$Color-Blue;
+    }
+
+    .announcement-content {
+        flex: 1 1 auto;
+
+        &-heading {
+            font-size: 18px;
+            margin-bottom: 0.5rem;
+        }
+
+        &-paragraph {
+            margin: 0.25rem 0;
+        }
+
+
+        .deadline {
+            display: flex;
+            align-items: center;
+            margin-top: 1rem;
+
+            .deadline-label {
+                font-weight: bold;
+                margin-right: 0.5rem;
+            }
+
+            .deadline-date {
+                font-weight: bold;
+                color: $Color-bg;
+            }
+        }
+    }
+}

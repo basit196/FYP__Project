@@ -1,0 +1,87 @@
+@import '../utilities/colors.scss';
+@import "../utilities/box-shadow.scss";
+
+.updated-project-table-row-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 60rem;
+    gap: 2rem;
+    background-color: $Color-White;
+    height: max-content;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: $Box-Shadow-dark;
+    animation: scaleAnimation .8s ease-in-out;
+}
+
+.updated-project-table-row-form {
+    display: flex;
+    gap: 3rem;
+    justify-content: center;
+}
+
+.project-table-form-input {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+}
+
+.project-table-form-button {
+    align-self: flex-end;
+    border: 0;
+    background-color: $Color-Primary;
+    color: $Color-White;
+    padding: .6rem 3rem;
+    cursor: pointer;
+    font-size: 1rem;
+    border-radius: 4px;
+}
+
+.project-form-dropdown {
+    width: 100%;
+}
+
+.report-project-form {
+    font-size: .8rem;
+    color: $Color-Primary;
+}
+
+.report-container {
+    display: flex;
+    flex-direction: column;
+    gap: .4rem;
+}
+
+.group-of-student {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    &-heading {
+        font-size: 1rem;
+        font-weight: 600;
+        color: $Color-Primary;
+    }
+}
+
+.student-group-member {
+    font-size: .8rem;
+}
+
+.student-group-input-container {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+.input-container-form {
+    display: flex;
+    flex-direction: column;
+    gap: .2rem;
+}
+
+.project-table-form-label {
+    font-size: .8rem;
+}

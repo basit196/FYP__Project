@@ -1,0 +1,116 @@
+@import '../../../component/utilities/colors.scss';
+
+.login-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-position: 0 center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100%;
+
+    .login-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        gap: 2rem;
+        height: 25rem;
+        width: 20rem;
+        border: 1px solid $Color-Dark-Grey;
+        padding: 2rem;
+        border-radius: 5px;
+        background-color: $Color-White;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        animation-name: move-down;
+        animation-duration: 1s;
+        animation-timing-function: ease-in;
+        animation-fill-mode: backwards;
+
+        .login-heading {
+            color: $Color-bg;
+        }
+
+        form input[type="text"],
+        form input[type="password"] {
+            display: block;
+            width: 100%;
+            border: 0;
+            font-size: 1rem;
+
+            &:focus {
+
+                outline: none;
+            }
+        }
+
+
+
+    }
+
+    .login-form {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        justify-content: center;
+        height: 100%;
+    }
+
+    .login-input {
+        display: flex;
+        flex-direction: column;
+        gap: .5rem;
+    }
+
+    .login-field {
+        border: 1px solid $Color-Grey;
+        padding: 0.5rem 1rem;
+        display: flex;
+        align-items: center;
+        gap: .5rem;
+    }
+
+    .login-icon {
+        font-size: .8rem;
+        color: $Color-Dark-Grey;
+
+    }
+
+    .login-password {
+        cursor: pointer;
+    }
+
+    .login-btn {
+        background-color: $Color-Blue;
+        color: $Color-White;
+        padding: 0.5rem 1rem;
+        border: none;
+        border-radius: 3px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background-color 0.3s ease-in-out;
+
+        &:hover {
+            background-color: $button-hover ;
+        }
+    }
+
+}
+
+@keyframes move-down {
+    0% {
+        transform: translateY(-100%);
+        /* Start off the top of the screen */
+    }
+
+    100% {
+        transform: translateY(0%);
+        /* Move to the bottom of the screen */
+    }
+}
+
+.invalid-detail {
+    color: red;
+    font-size: .8rem;
+    font-weight: 500;
+}

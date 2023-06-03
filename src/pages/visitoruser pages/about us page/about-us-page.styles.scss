@@ -1,0 +1,62 @@
+@import '../../../component/utilities/colors.scss';
+@import "../../../component/utilities/mixin.scss";
+
+.about-us {
+    display: flex;
+    flex-direction: column;
+    row-gap: 80px;
+
+    @include large {
+        row-gap: 60px;
+    }
+
+    @include small3 {
+        row-gap: 30px;
+    }
+
+    @include small4 {
+        row-gap: 20px;
+    }
+
+    .about-us-text {
+        display: flex;
+        flex-direction: column;
+        padding: 0 200px;
+        row-gap: 80px;
+
+        @include large {
+            padding: 0 100px;
+            row-gap: 60px;
+        }
+
+        @include medium {
+            padding: 0 80px;
+        }
+
+        @include small1 {
+            padding: 0 50px;
+        }
+
+        @include small2 {
+            padding: 0 40px;
+        }
+
+        @include small3 {
+            padding: 0 30px;
+            row-gap: 30px;
+        }
+
+        @include small4 {
+            padding: 0 20px;
+            row-gap: 20px;
+        }
+    }
+
+    .about-us-img {
+        display: flex;
+        height: 500px;
+        background-position: center;
+        background-size: cover;
+
+    }
+}

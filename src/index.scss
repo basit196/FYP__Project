@@ -1,0 +1,43 @@
+@import "./component/utilities/colors.scss";
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  color: $Color-Black;
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+  overflow: auto;
+
+  code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+      monospace;
+
+  }
+}
+
+#root {
+  min-height: 100%;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+
+}
+
+a {
+  color: $Color-Black;
+  text-decoration: none;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+#root {
+  height: 100%;
+}

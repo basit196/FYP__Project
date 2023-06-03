@@ -1,0 +1,72 @@
+@import '../../component/utilities/colors.scss';
+@import "../../component/utilities/mixin.scss";
+
+.cover-img {
+    position: relative;
+    height: 25rem;
+    width: 100vw;
+    background-position: center;
+    background-size: cover;
+}
+
+.cover-img-heading {
+
+
+    position: absolute;
+    font-size: 3rem;
+    color: $Color-White;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    @include large {
+        font-size: 60px;
+    }
+
+    @include medium {
+        font-size: 50px;
+    }
+
+    @include small1 {
+        font-size: 40px;
+    }
+
+    @include small4 {
+        font-size: 30px;
+    }
+
+}
+
+.cover-img-subheading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    position: absolute;
+    font-size: 2.5rem;
+    color: $Color-bg;
+    top: 70%;
+    left: 50%;
+    width: max-content;
+    transform: translate(-50%, -50%);
+
+    span {
+        font-size: 2rem;
+        color: $Color-White;
+    }
+}
+
+.cover-img-project-icon {
+    display: flex;
+    align-items: center;
+    align-self: flex-end;
+    font-size: 1rem;
+
+    gap: 10px;
+
+    span {
+        font-size: 1rem;
+        color: $Color-Grey;
+        font-weight: 300;
+    }
+}

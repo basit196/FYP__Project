@@ -1,0 +1,66 @@
+@import '../../../component/utilities/colors.scss';
+@import "../../../component/utilities/mixin.scss";
+
+.project-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+
+    .project-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 3rem;
+        flex-grow: 1;
+        background-image: linear-gradient(to bottom right, $Color-Blue, $Color-White, $Color-Blue);
+        padding: 3rem 4rem;
+        min-height: 100%;
+
+        @include extra-large {
+            padding: 20px 20px;
+        }
+
+        @include large {
+            align-items: center;
+            padding: 20px 10;
+        }
+
+        @include small1 {
+            padding: 10px 5px;
+        }
+    }
+
+    .table-content {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+
+        @include large {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+    }
+
+    .project-pagination {
+        align-self: flex-end;
+        overflow: hidden;
+    }
+
+}
+
+.filter-data-container {
+    display: flex;
+    justify-content: center;
+    outline: none;
+    background-color: $Color-Dark-Grey;
+    padding: 1rem 0;
+    gap: 2.5rem;
+}
+
+.no-data {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

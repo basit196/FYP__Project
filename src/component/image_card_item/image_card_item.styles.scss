@@ -1,0 +1,168 @@
+@import '../../component/utilities/colors.scss';
+@import "../../component/utilities/mixin.scss";
+
+.card-image-container {
+    display: flex;
+    background-color: $Color-White;
+    color: $Color-Dark-Grey;
+    flex-direction: column;
+    justify-content: stretch;
+    cursor: pointer;
+    border-radius: 1.5rem;
+    overflow: hidden;
+    width: 18rem;
+    height: auto;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+    transition: transform .1s;
+    will-change: scroll-position;
+
+    &:hover {
+        transform: scale(1.05);
+    }
+
+
+
+    &:hover .card-image-project-based {
+        display: flex;
+    }
+
+    @include medium {
+        padding: 0 10px;
+    }
+
+    @include medium3 {
+        padding: 0 20px;
+    }
+}
+
+.card-image {
+    position: relative;
+    width: 100%;
+    height: 12rem;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    overflow: hidden;
+
+
+
+    @include medium3 {
+        width: 18rem;
+        height: 18rem;
+    }
+
+    .card-image-project-based {
+        display: none;
+        align-items: center;
+        position: absolute;
+        font-size: 1rem;
+        top: 10%;
+        left: 10%;
+        gap: 10px;
+        color: $Color-White;
+        transition: display .1s;
+    }
+}
+
+.card-info {
+    display: flex;
+    flex-direction: column;
+    padding: 15px 15px;
+    gap: .5rem;
+    transition: all 1s;
+    color: $Color-Black;
+    border-bottom: 1px solid $Color-Grey;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
+    transition: color .1s;
+
+    .card-heading {
+        font-size: 1.1rem;
+        line-break: auto;
+    }
+
+    .card-paragraph {
+        font-weight: 400;
+        font-size: 1rem;
+        color: #868686;
+        column-gap: 0.5rem;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+    }
+}
+
+.card-text {
+    display: flex;
+    flex-direction: column;
+    padding: 15px 15px;
+    transition: all 1s;
+    color: $Color-Black;
+    border-bottom: 1px solid $Color-Grey;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
+    transition: color .1s;
+    height: 6rem;
+    gap: .5rem;
+
+    .card-heading {
+        font-size: 1.1rem;
+        line-break: auto;
+        color: $Color-bg;
+    }
+
+    .card-paragraph {
+        font-weight: 400;
+        font-size: 1.3rem;
+        color: #868686;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+
+        @include medium4 {
+            font-size: 1rem;
+        }
+    }
+
+    @include medium4 {
+        opacity: 1;
+        font-size: 1.25rem;
+        padding: 0 15px;
+        transform: translateY(-50%);
+
+    }
+
+}
+
+.round-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 18px 20px;
+    font-size: 1.2rem;
+    color: #284b63;
+    align-self: stretch;
+    gap: 0.5rem;
+    transition: color .1s;
+
+    @include small4 {
+        font-size: 16px;
+    }
+
+    &:hover {
+        color: $Color-bg;
+    }
+
+}
+
+.card-icon {
+    border: 2px solid $Color-Primary;
+    border-radius: 30px;
+    padding: 5px;
+    font-size: 1rem;
+    will-change: color;
+    transition: border, color .1s;
+
+
+
+}

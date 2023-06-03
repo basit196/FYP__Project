@@ -1,0 +1,56 @@
+@import "../../component/utilities/colors.scss";
+
+.nested-dropdown-title {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    align-items: center;
+}
+
+.nested-dropdown {
+    background-color: #ffffff;
+    border-color: hsl(0, 0%, 80%);
+    border-radius: 4px;
+    width: 12rem;
+    padding: 0 1rem;
+    color: $Color-Dark-Grey;
+    font-size: 1rem;
+}
+
+.nested-dropdown-icon {
+    color: $Color-Grey;
+    font-size: .9rem;
+    border-left: 1px solid;
+    padding-left: 0.5rem;
+
+    &:focus {
+        color: $Color-Black;
+    }
+}
+
+.project-dropdown-submenu {
+    width: .9rem;
+    max-height: 12rem;
+    overflow-y: auto;
+}
+
+.project-dropdown-submenu {
+    &::-webkit-scrollbar {
+        width: .9rem !important;
+        max-height: 10rem;
+        overflow-y: scroll;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: #d9d9d9 !important;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: #868686 !important;
+
+        &:hover {
+            background: #284b63 !important;
+        }
+    }
+
+}

@@ -1,0 +1,92 @@
+    @import '../../component/utilities/colors.scss';
+    @import "../../component/utilities/mixin.scss";
+
+    .title {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+
+
+        h2 {
+            color: $Color-Blue;
+            padding: 0 200px;
+            font-size: 30px;
+
+            @include medium3 {
+                padding: 0 100px;
+            }
+
+            @include medium4 {
+                padding: 0 80px;
+                font-size: 25px;
+            }
+
+            @include small1 {
+                padding: 0 40px;
+                font-size: 22px;
+            }
+
+            @include small2 {
+                padding: 0 20px;
+                font-size: 18px;
+            }
+
+            @include small6 {
+                font-size: 16px;
+                padding: 0 10px;
+            }
+        }
+
+        &::before {
+            content: " ";
+            display: block;
+            height: 5px;
+            width: 200px;
+            border-radius: 50px;
+            background: $Color-Blue;
+
+            @include small1 {
+                height: 4px;
+                width: 180px;
+            }
+
+            @include small3 {
+                width: 140px;
+            }
+
+            @include small4 {
+                width: 100px;
+            }
+
+            @include small6 {
+                width: 80px;
+            }
+        }
+
+        &::after {
+            content: " ";
+            display: block;
+            height: 5px;
+            width: 200px;
+            border-radius: 50px;
+            background: $Color-Blue;
+
+            @include small1 {
+                height: 4px;
+                width: 180px;
+            }
+
+            @include small3 {
+                width: 140px;
+            }
+
+            @include small4 {
+                width: 100px;
+            }
+
+            @include small6 {
+                width: 80px;
+            }
+        }
+    }

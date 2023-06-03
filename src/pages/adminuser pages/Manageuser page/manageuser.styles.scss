@@ -1,0 +1,31 @@
+@import '../../../component/utilities/colors.scss';
+@import "../../../component/utilities/box-shadow.scss";
+
+.manage-user {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100%;
+    padding: 3rem 5rem;
+    min-width: 100%;
+
+    &-container {
+        background-color: $Color-White;
+        max-width: 100%;
+        min-height: 33rem;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        padding: 3rem;
+        box-shadow: $Box-Shadow-light;
+        gap: 2rem;
+    }
+
+    &-content {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+    }
+}
+

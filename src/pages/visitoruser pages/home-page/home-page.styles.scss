@@ -1,0 +1,108 @@
+@import '../../../component/utilities/colors.scss';
+
+.home-content {
+    display: flex;
+    justify-content: space-between;
+    flex-grow: 1;
+    flex-direction: column;
+}
+
+.home-container {
+    display: flex;
+    height: 36rem;
+    width: 100vw;
+    justify-content: center;
+    padding: 0 3.125rem;
+    align-items: center;
+
+    .right-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        width: 50%;
+
+        z-index: 2000;
+    }
+
+    .image-container {
+        display: flex;
+        align-items: flex-end;
+        width: fit-content;
+    }
+
+
+    .background-image {
+        height: 300px;
+        width: 400px;
+        display: inline-block;
+        background-size: cover;
+        background-position: 295px 72px;
+        clip-path: polygon(81% 0, 0 80%, 100% 100%);
+        animation: Skew 4s infinite;
+        transform: rotate(20deg);
+        animation-direction: normal;
+    }
+
+    .image-side-text-container {
+        width: 200px;
+        display: inline-block;
+
+    }
+
+    .image-side-text {
+        color: $Color-Black;
+        font-size: 16px;
+        line-height: 32px;
+        text-align: center;
+        font-weight: 600;
+        padding: 6px 20px;
+        background-color: $Color-bg;
+
+    }
+
+
+    .side-1 {
+        z-index: 1000;
+        margin-left: 26.25rem;
+    }
+
+    .side-2 {
+        margin-bottom: 28px;
+        margin-right: -6px;
+        z-index: 1500;
+    }
+
+    .side-3 {
+        margin-left: 500px;
+        color: $Color-Black;
+    }
+
+    .left-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 50%;
+
+        .text {
+            width: 650px;
+            font-size: 22px;
+            line-height: 1.6;
+            background-color: $Color-Grey ;
+            padding: 40px 30px;
+            font-weight: 600;
+            color: $Color-Black;
+            font-family: 'IM Fell Great Primer SC', serif;
+
+        }
+    }
+}
+
+@keyframes Skew {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
