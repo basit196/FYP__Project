@@ -1,0 +1,82 @@
+@import "../../../../component/utilities/colors.scss";
+
+.defense-option-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: $Color-White;
+    padding: 2rem 4rem;
+    height: 20rem;
+    width: 30rem;
+    gap: 1rem;
+    justify-content: space-between;
+
+    &-heading {
+        font-size: 24px;
+    }
+
+    &-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        flex-grow: 1;
+        width: 100%;
+        gap: 1.5rem;
+    }
+
+    &-options {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        justify-content: center;
+        gap: 1.5rem;
+        font-size: 1.1rem;
+    }
+
+    &-option {
+        display: flex;
+        gap: .5rem;
+    }
+
+    &-button-container {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 0.2rem;
+
+    }
+
+    &-button {
+        padding: .8em 1.2rem;
+        background-color: $Color-Primary;
+        color: $Color-White;
+        border: none;
+        cursor: pointer;
+        font-size: 1.1rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.5rem;
+
+        &-icon {
+            font-size: 1.1rem;
+        }
+
+    }
+}
+
+.hide-form {
+    animation: disappearAnimation 0.3s ease;
+}
+
+@keyframes disappearAnimation {
+    0% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+}

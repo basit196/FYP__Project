@@ -5,9 +5,22 @@ import {
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { UserContext } from "../../context/user";
 
 const ImageCardItem = ({ projectType = "", item }) => {
+  const { user } = useContext(UserContext);
+  const [supervisor, setsupervisor] = useState({});
+  useEffect(() => {
+    if (user.length > 0) {
+      const matchSupervisor =
+        item.uploadedBy &&
+        user.find((users) => users.id === item.uploadedBy.id);
+      setsupervisor(matchSupervisor);
+    }
+  }, [user]);
+
   return (
     <div className="card-image-container">
       <div
@@ -28,7 +41,7 @@ const ImageCardItem = ({ projectType = "", item }) => {
         <h1 className="card-heading">{item.field}</h1>
         <p className="card-paragraph">
           <FontAwesomeIcon icon={faUser} />
-          {item.supervisor}
+          {supervisor && supervisor.Name}{" "}
         </p>
       </div>
       <div className="card-text">

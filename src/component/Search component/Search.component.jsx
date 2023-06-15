@@ -7,10 +7,10 @@ import { UserContext } from "../../context/user";
 const Search = ({ data, type }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
-  const { setSearchkeyword, setSearch } = useContext(UserContext);
+  const {user, setSearchkeyword, setSearch } = useContext(UserContext);
   useEffect(() => {
     setSearch(searchResults);
-  }, [searchResults, setSearch]);
+  }, [searchResults]);
 
   const handleInputChange = (event) => {
     const keyword = event.target.value;
@@ -29,21 +29,22 @@ const Search = ({ data, type }) => {
     if (type === "Project Table") {
       for (const category of data) {
         const { title, supervisor } = category;
+        const superFind = user.find((i) => i.id === supervisor.id);
 
         if (
           title.toLowerCase().includes(keyword.toLowerCase()) ||
-          supervisor.toLowerCase().includes(keyword.toLowerCase())
+          superFind.Name.toLowerCase().includes(keyword.toLowerCase())
         ) {
           results.push(category);
         }
       }
-    }
-    if (type === "Idea Table") {
+    } else if (type === "Idea Table") {
       for (const items of data) {
-        const { title, supervisor } = items;
+        const { title, uploadedBy } = items;
+        const superFind=user.find((i)=>i.id===uploadedBy.id)
         if (
           title.toLowerCase().includes(keyword.toLowerCase()) ||
-          supervisor.toLowerCase().includes(keyword.toLowerCase())
+          superFind.Name.toLowerCase().includes(keyword.toLowerCase())
         ) {
           results.push(items);
         }

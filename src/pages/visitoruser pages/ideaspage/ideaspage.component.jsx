@@ -5,10 +5,24 @@ import Title from "../../../component/title component/title.component.jsx";
 import "./ideaspage.styles.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretDown } from "@fortawesome/free-solid-svg-icons";
+import { useContext, useEffect, useState } from "react";
+import { IdeaContext } from "../../../context/ideascontext.jsx";
 const IdeaPage = () => {
   const ideaText = {
-    para: "IDEA's Drive version. Without idea - any efforts can't get desitnation. As we all knoe that FYP is pre departure stage towards  Professional life. At this stage, we all have to allign with applied idea cum field w.r.t to our taste & skills",
+    para: "Fueling the journey to professional success, IDEAS Drive version is the ultimate portal for Final Year Projects (FYP). With a focus on aligning students, unique skills and passions with applied ideas in their respective fields, our platform propels them towards their desired destination, ensuring an impactful launch into their professional lives.",
   };
+  const { idea } = useContext(IdeaContext)
+    const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (idea.length > 0) {
+      setLoading(false);
+    }
+  }, [idea]);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="idea-page-container">
@@ -21,12 +35,16 @@ const IdeaPage = () => {
         <div className="idea-book-images">
           <Image_Directive />
         </div>
-        <div className="Explore-Button">
-          <Link path="/ideas" className="Expand-button" to="Expand-more">
-            Explore More
-            <FontAwesomeIcon icon={faCaretDown} className="icon" />
-          </Link>{" "}
-        </div>
+        {idea.length > 0 ? (
+          <div className="Explore-Button">
+            <Link path="/ideas" className="Expand-button" to="Expand-more">
+              Explore More
+              <FontAwesomeIcon icon={faCaretDown} className="icon" />
+            </Link>{" "}
+          </div>
+        ) : (
+          <div></div>
+        )}
       </div>
     </div>
   );

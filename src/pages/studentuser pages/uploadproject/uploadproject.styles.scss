@@ -1,0 +1,47 @@
+@import "../../../component/utilities/colors.scss";
+.project-buttons{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+.project-button{
+    color:$Color-Dark-Grey ;
+    background-color: transparent;
+    cursor: pointer;
+    padding: .5rem 2rem;
+    border:1px solid $Color-Grey;
+}
+.show-form {
+    animation: appearAnimation 0.3s ease;
+}
+
+@keyframes appearAnimation {
+    0% {
+        opacity: 1;
+        transform: translateX(100%);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateX(0);
+    }
+}
+.proposals-form-head{
+    display: flex;
+    align-items: center;
+}
+.project-form-heading{
+display: flex;
+justify-content: center;
+flex-grow: 1;
+}
+.back-the-form{
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+    font-size: .9rem;
+    color: $Color-Dark-Grey;
+    display: flex;
+    gap: .5rem;
+    align-items: center;
+}

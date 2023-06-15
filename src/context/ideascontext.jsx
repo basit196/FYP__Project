@@ -6,15 +6,13 @@ export const IdeaContext = createContext({
   setIsView: () => {},
 });
 export const IdeasProvider = ({ children }) => {
+  const [IdeaUpdate, setIdeaUpdate] = useState(false);
   const [idea, setidea] = useState([]);
   const [view, setIsView] = useState(false);
   useEffect(() => {
-    const getIdeaMap = async () => {
-      const ideaMap = await getColllectionData("Idea-data");
-      setidea(ideaMap);
-    };
-    getIdeaMap();
-  }, []);
+    const unsubscribe = getColllectionData("Idea-data", setidea, setIdeaUpdate);
+    return () => unsubscribe();
+  }, [IdeaUpdate]);
   const value = { idea, view, setIsView };
   return <IdeaContext.Provider value={value}>{children}</IdeaContext.Provider>;
 };

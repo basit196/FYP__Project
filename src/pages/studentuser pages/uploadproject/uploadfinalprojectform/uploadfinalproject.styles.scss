@@ -1,0 +1,120 @@
+@import "../../../../component/utilities/colors.scss";
+
+.upload-project {
+    padding: 2rem 4rem;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.project-scroll {
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    justify-content: space-between;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+.project-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 2rem;
+    height: 17rem;
+    width: 33rem;
+    gap: 1rem;
+    justify-content: space-around;
+
+    &-heading {
+        font-size: 2rem;
+        font-weight: 400;
+        color: $Color-Primary;
+        align-self: center;
+    }
+
+    .form-groups {
+        display: flex;
+        flex-direction: column;
+        gap: 2.5rem;
+        width: 100%;
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: .5rem;
+
+        &-label {
+            font-size: .9rem;
+            color: $Color-bg;
+        }
+
+        input[type="file"] {
+            width: min-content;
+        }
+
+        &-file {
+            display: flex;
+            flex-direction: column;
+            gap: .8rem;
+        }
+
+        &-items {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        &-filtering {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        &-filter {
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+
+    .textarea-upload-project {
+        border: 1px solid $Color-Grey;
+        border-radius: .4rem;
+        width: 100%;
+        padding: .5rem 1rem;
+        font-size: 1rem;
+        color: $Color-Dark-Grey;
+        font-weight: 400;
+
+        &:focus {
+            outline: 0;
+        }
+    }
+
+    &-button {
+        padding: 1rem 1.5rem;
+        background-color: $Color-Primary;
+        color: $Color-White;
+        font-size: 1rem;
+        cursor: pointer;
+        border: 0;
+        transition: all .1s;
+        align-self: flex-end;
+
+        &:hover {
+            background-color: transparent;
+            border: 1px solid $Color-Primary;
+            color: $Color-Primary;
+        }
+    }
+}

@@ -1,92 +1,208 @@
 @import "../../../component/utilities/colors.scss";
+@import "../../../component/utilities/box-shadow.scss";
 
-.upload-proposal {
-    padding: 2rem 4rem;
-    height: 100%;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}
-
-.proposal-form {
+.proposals-form {
     display: flex;
     flex-direction: column;
     align-items: center;
     background-color: $Color-White;
     padding: 2rem 4rem;
-    border-radius: 2rem;
-    height: 100%;
+    height: max-content;
     width: 40rem;
-    gap: 4rem;
+    gap: 1rem;
+    justify-content: center;
 
-    &-heading {
-        font-size: 2rem;
-        font-weight: 400;
-        color: $Color-Primary;
+    &-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 100%;
+        height: 100%;
+        gap: 3rem;
     }
 
-    .form-groups {
+    &-heading {
+        align-self: center;
+    }
+
+    &-options {
         display: flex;
         flex-direction: column;
         gap: 2rem;
-        width: 100%;
-    }
 
-    .form-group {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        gap: .5rem;
-
-        &-label {
-            font-size: 1rem;
+        &-heading {
+            font-size: 1.2rem;
+            font-weight: bold;
             color: $Color-bg;
         }
-
-        input[type="file"] {
-            width: min-content;
-        }
-        &-file{
-            display: flex;
-            flex-direction: column;
-            gap: .5rem;
-        }
-        &-items{
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-        }
     }
 
-    .textarea-upload-proposal {
-        border: 1px solid $Color-Grey;
-        border-radius: 1rem;
-        width: 100%;
-        padding: .5rem 1rem;
-        font-size: 1rem;
-        color: $Color-Dark-Grey;
-        font-weight: 400;
 
-        &:focus {
-            outline: 0;
-        }
+    &-group-input {
+        display: flex;
+        gap: 1rem;
+
+    }
+
+    &-label {
+        font-size: 1.2rem;
     }
 
     &-button {
-        padding: .5rem 1rem;
+        padding: .6rem 1.5rem;
         background-color: $Color-Primary;
         color: $Color-White;
-        font-size: 1.2rem;
+        border: none;
+        border-radius: 5px;
         cursor: pointer;
-        border: 0;
-        border-radius: 2rem;
-        width: 100%;
-        transition: all .1s;
+        font-size: 1rem;
 
-        &:hover {
-            background-color: transparent;
-            border: 1px solid $Color-Primary;
-            color: $Color-Primary;
+        &-container {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
         }
+
+    }
+
+    &-error {
+        align-self: center;
+        font-size: .8rem;
+        color: red;
+
+    }
+}
+
+.show-code {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    z-index: 99999999767899799;
+    width: 100%;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+
+    &-container {
+        display: flex;
+        flex-direction: column;
+        width: 25rem;
+        gap: 1rem;
+        background-color: $Color-White;
+        height: max-content;
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: $Box-Shadow-dark;
+        animation: scaleAnimation .8s ease-in-out;
+    }
+
+    &-paragraph {
+        font-size: 1.2rem;
+        color: $Color-bg;
+    }
+
+    &-text {
+        font-size: 1rem;
+        letter-spacing: 2px;
+        font-weight: 500;
+    }
+}
+
+.textarea-upload-proposal {
+    border: 1px solid $Color-Grey;
+    border-radius: .4rem;
+    width: 100%;
+    padding: .5rem 1rem;
+    font-size: 1rem;
+    color: $Color-Dark-Grey;
+    font-weight: 400;
+
+    &:focus {
+        outline: 0;
+    }
+}
+
+.no-form-to-show {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    font-size: 1.2rem;
+    color: $Color-bg;
+
+}
+
+.add-member-btns {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+}
+
+.no-button {
+    border: 1px solid $Color-Grey;
+    background-color: transparent;
+    border-radius: 5px;
+    cursor: pointer;
+    color: $Color-Black;
+    padding: 0.6rem 1.5rem;
+}
+
+.add-member {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    z-index: 99999999767899799;
+    width: 100%;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+
+    &-container {
+        display: flex;
+        flex-direction: column;
+        width: 40rem;
+        gap: 1rem;
+        background-color: #ffffff;
+        height: max-content;
+        justify-content: space-between;
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+        animation: scaleAnimation 0.8s ease-in-out;
+    }
+
+    &-paragraph {
+        font-size: 1.2rem;
+        color: $Color-bg;
+    }
+
+    &-text {
+        font-size: 1rem;
+        letter-spacing: 2px;
+        font-weight: 500;
+    }
+
+    &-students {
+        display: flex;
+        flex-direction: column;
+        gap: .5rem;
+    }
+
+    &-student {
+        display: flex;
+        gap: .5rem;
+    }
+
+    &-content {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
     }
 }

@@ -8,8 +8,7 @@ import {
   collection,
   doc,
   getDoc,
-  getDocs,
-  query,
+  onSnapshot,
   setDoc,
   updateDoc,
 } from "firebase/firestore";
@@ -32,7 +31,6 @@ export const addcollectionAndDocument = async (collectionKey, array) => {
   const Collection = collection(db, collectionKey);
 
   array.forEach((obj) => {
-    // Use the ID as the document ID when adding the data to Firestore
     const docRef = doc(Collection, obj.id);
     setDoc(docRef, obj);
   });
@@ -41,12 +39,18 @@ export const addcollectionAndDocument = async (collectionKey, array) => {
 
 //get  colllection from firebase
 
-export const getColllectionData = async (collectionKey) => {
-  const userQuery = query(collection(db, collectionKey));
-  const querySnapshot = await getDocs(userQuery);
-  const updatedUserData = querySnapshot.docs.map((doc) => doc.data());
-  return updatedUserData;
+export const getColllectionData = (collectionKey, onUpdate, isUpdated) => {
+  const collectionRef = collection(db, collectionKey);
+
+  const unsubscribe = onSnapshot(collectionRef, (querySnapshot) => {
+    const updatedUserData = querySnapshot.docs.map((doc) => doc.data());
+    onUpdate(updatedUserData);
+    isUpdated(true);
+  });
+
+  return unsubscribe;
 };
+
 //add data in existing collection and document
 export const addDataInExistingColAndDoc = async (
   collectionKey,

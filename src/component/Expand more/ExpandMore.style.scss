@@ -1,3 +1,13 @@
+@import ".../../..//../component/utilities/colors.scss";
+
+.expand-more-background {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    color: $backgroundcolor;
+}
+
 .expand-more {
     display: flex;
     flex-direction: column;
@@ -14,4 +24,5 @@
 .expand-more-item {
     display: flex;
     gap: 3rem;
+    flex-wrap: wrap;
 }

@@ -14,7 +14,6 @@ const Filter = ({ filterArray }) => {
       filter: filter,
     });
   };
-
   return (
     <div className="filter-container">
       {filterArray.map((optionitem) => {

@@ -113,8 +113,8 @@
 
     .card-paragraph {
         font-weight: 400;
-        font-size: 1.3rem;
-        color: #868686;
+        font-size: 1.2rem;
+        color: $Color-Dark-Grey;
         text-overflow: ellipsis;
         white-space: nowrap;
         overflow: hidden;
@@ -140,7 +140,7 @@
     justify-content: center;
     padding: 18px 20px;
     font-size: 1.2rem;
-    color: #284b63;
+    color: $Color-Primary;
     align-self: stretch;
     gap: 0.5rem;
     transition: color .1s;

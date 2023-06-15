@@ -1,0 +1,70 @@
+@import "../../../../component/utilities/colors.scss";
+
+.defense-report {
+    background-color: $Color-White;
+    padding: 1.5rem;
+    display: flex;
+    height: 33rem;
+    flex-direction: column;
+    gap: 1rem;
+    width: 50rem;
+
+    &-row {
+        display: flex;
+        align-items: center;
+        gap: .5rem;
+
+    }
+
+    &-col {
+        display: flex;
+        flex-direction: column;
+        gap: .5rem;
+    }
+
+    &-checking {
+        display: flex;
+        flex-direction: column;
+        gap: 0.2rem;
+        flex-grow: 1;
+        justify-content: space-between;
+
+    }
+
+    &-h2 {
+        font-size: .9rem;
+        color: $Color-Primary;
+    }
+
+
+
+    &-text {
+        font-size: 1.1rem;
+    }
+
+    a {
+        color: #007bff;
+        text-decoration: none;
+    }
+
+    select,
+    textarea {
+        width: 100%;
+        flex-grow: 1;
+        font-size: 1rem;
+        color: $Color-Grey;
+        &:focus{
+            outline: 0;
+        }
+    }
+
+    button {
+        background-color: #007bff;
+        color: #fff;
+        padding: 10px;
+        border: none;
+        cursor: pointer;
+    }
+
+    input[type='file'] {}
+}

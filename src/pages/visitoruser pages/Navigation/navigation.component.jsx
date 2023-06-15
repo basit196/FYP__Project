@@ -61,30 +61,8 @@ const Navigation = () => {
           >
             Top Pick
           </NavLink>
-          <NavLink
-            className={({ isActive }) =>
-              isActive ? "active_tab nav-link" : "nav-link"
-            }
-            to="/hiretalent"
-          >
-            Hire talent
-          </NavLink>
-          <NavLink
-            className={({ isActive }) =>
-              isActive ? "active_tab nav-link" : "nav-link"
-            }
-            to="/fyp"
-          >
-            FYP
-          </NavLink>
-          <NavLink
-            className={({ isActive }) =>
-              isActive ? "active_tab nav-link" : "nav-link"
-            }
-            to="/aboutus"
-          >
-            About us
-          </NavLink>
+    
+       
           <NavLink
             className={({ isActive }) =>
               isActive ? "active_tab nav-link" : "nav-link"

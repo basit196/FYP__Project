@@ -1,0 +1,124 @@
+@import "../../../../component/utilities/colors.scss";
+@import "../../../../component/utilities/box-shadow.scss";
+
+.view-proposal-popup {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    z-index: 99999999767899799;
+    width: 100%;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+
+    &-content {
+        display: flex;
+        width: 60rem;
+        background-color: $Color-White;
+        height: max-content;
+        border-radius: 10px;
+        box-shadow: $Box-Shadow-dark;
+        animation: scaleAnimation 1s ease-in-out;
+        overflow: hidden;
+        flex-direction: column;
+        padding: 2rem;
+    }
+}
+
+.panel-view-proposal-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    .form-heading {
+        font-size: 1.2rem;
+
+        &-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 1.2rem;
+        }
+    }
+
+    .form-section {
+        display: flex;
+        flex-direction: column;
+        gap: .2rem;
+    }
+
+    .section-heading {
+        font-size: 1rem;
+    }
+
+    .document-link {
+        color: #007bff;
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    .students-list {
+        display: flex;
+        flex-direction: column;
+        gap: .5rem;
+
+    }
+
+    .form-container {
+        display: flex;
+        flex-direction: column;
+        gap: .5rem;
+
+        .status-select {
+            font-size: 16px;
+        }
+
+        .comments-textarea {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            resize: vertical;
+        }
+
+
+
+        .submit-button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            align-self: flex-end;
+
+            &:hover {
+                background-color: #0056b3;
+            }
+        }
+    }
+}
+
+.View-proposal-disabled {
+    background-color: $Color-Light-Grey;
+    color: $Color-Grey;
+    cursor: not-allowed;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    align-self: flex-end;
+}
+textarea {
+    width: 100%;
+    flex-grow: 1;
+    font-size: 1rem;
+    color: $Color-Grey;
+
+    &:focus {
+        outline: 0;
+    }
+}

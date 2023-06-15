@@ -1,6 +1,5 @@
 import React, { createContext, useEffect, useState } from "react";
 import { getColllectionData, db } from "../utiles/firebase/firebase.utiles";
-import { onSnapshot, collection } from "firebase/firestore";
 
 export const UserContext = createContext({
   user: [],
@@ -19,6 +18,7 @@ export const UserContext = createContext({
 });
 
 export const UserProvider = ({ children }) => {
+  const [userUpdate, setUserUpdate] = useState(false);
   const [user, setUser] = useState([]);
   const [currentUser, setCurrentUser] = useState({});
   const [search, setSearch] = useState([]);
@@ -28,13 +28,13 @@ export const UserProvider = ({ children }) => {
   const [image, setimage] = useState(false);
 
   useEffect(() => {
-    const getUserMap = async () => {
-      const userMap = await getColllectionData("Users-Data");
-      setUser(userMap);
-    };
-    getUserMap();
-  }, [user.id]);
-
+    const unsubscribe = getColllectionData(
+      "Users-Data",
+      setUser,
+      setUserUpdate
+    );
+    return () => unsubscribe();
+  }, [userUpdate]);
   const value = {
     user,
     search,

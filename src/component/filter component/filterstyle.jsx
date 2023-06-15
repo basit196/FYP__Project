@@ -12,9 +12,12 @@ export const colourStyles = {
   }),
   menuList: (base) => ({
     ...base,
+    overflow: "auto",
+    height: "5rem",
+
     "::-webkit-scrollbar": {
       width: ".9rem",
-      height: "10rem",
+      height: "2rem",
     },
     "::-webkit-scrollbar-track": {
       background: "#d9d9d9",

@@ -1,9 +1,40 @@
-import { Fragment } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./projecttable.style.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faList, faProjectDiagram } from "@fortawesome/free-solid-svg-icons";
+import { useContext } from "react";
+import { UserContext } from "../../context/user";
 const ProjectTable = ({ tableData }) => {
+  const { user } = useContext(UserContext);
+  const [matchedStudents, setMatchedStudents] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
+
+ useEffect(() => {
+   if (tableData.Student && user) {
+     const filteredStudents = user.filter((users) => {
+       const matchedUser = tableData.Student.find(
+         (student) => users.id === student.id
+       );
+       return matchedUser !== undefined;
+     });
+     setMatchedStudents(filteredStudents);
+     setIsLoading(false);
+   }
+ }, [tableData, user]);
+
+ const matchSupervisor =
+   tableData.supervisor &&
+   user.find((users) => users.id === tableData.supervisor.id);
+
+ if (isLoading) {
+   return <div>Loading...</div>;
+ }
+
+ if (user.length === 0) {
+   return <div>No data found.</div>;
+ }
+
   return (
     <Fragment>
       <div className="project-table">
@@ -14,14 +45,19 @@ const ProjectTable = ({ tableData }) => {
           <div className="row-item student-item">
             <span className="row-item-title">Student: </span>
             <div className="student-name">
-              {tableData.Student.map((studentName) => {
-                return <span key={studentName.id}>{studentName.name}</span>;
-              })}
+              {tableData.Student &&
+                matchedStudents.map((studentName) => {
+                  return (
+                    <span key={studentName.id}>
+                      {studentName.Name && studentName.Name}
+                    </span>
+                  );
+                })}
             </div>
           </div>
           <div className="row-item">
             <span className="row-item-title">Supervisor: </span>
-            <span>{tableData.supervisor}</span>
+            <span>{matchSupervisor.Name && matchSupervisor.Name}</span>
           </div>
           <div className="row-item bg-blue">
             <div className="Report-web-video">

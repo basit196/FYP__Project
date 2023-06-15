@@ -32,7 +32,7 @@ const HomePage = () => {
               className="background-image"
               style={{
                 backgroundImage:
-                  "linear-gradient(to bottom right, rgb(0, 0, 0, 0.4), rgb(0, 0, 0, 0.4)),url(./images/homeImg.jpg)",
+                  "linear-gradient(to bottom right, rgb(0, 0, 0, 0.1), rgb(0, 0, 0, 0.1)),url(./images/homeImg.jpg)",
               }}
             />
           </div>

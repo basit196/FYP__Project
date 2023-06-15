@@ -8,7 +8,7 @@ const DashboardcarddirectiveData = [
   {
     backGroundColor: "#bbd0ff",
     icon: faUser,
-    text: "Total User",
+    text: "All Users",
     color: "#00728e",
     url: "/admin/ManageUser",
     totalData: "user-data",
@@ -16,7 +16,7 @@ const DashboardcarddirectiveData = [
   {
     backGroundColor: "#bbd0ff",
     icon: faLightbulb,
-    text: "Total Ideas",
+    text: "All Ideas",
     color: "#ffd23f",
     url: "/admin/ViewAllIdeas",
     totalData: "idea-data",
@@ -24,7 +24,7 @@ const DashboardcarddirectiveData = [
   {
     backGroundColor: "#bbd0ff",
     icon: faProjectDiagram,
-    text: "Total Projects",
+    text: "All Projects",
     color: "#673ab7",
     url: "/admin/ViewAllProjects",
     totalData: "project-data",

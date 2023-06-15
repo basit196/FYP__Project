@@ -1,12 +1,17 @@
 import {
-  faFile,
+  faClock,
+  faCommentDots,
+  faFileAlt,
+  faFileCode,
   faFileContract,
+  faFileUpload,
   faFolderOpen,
   faHome,
   faLightbulb,
   faProjectDiagram,
   faUserEdit,
   faUserPlus,
+  faUsers,
 } from "@fortawesome/free-solid-svg-icons";
 const UserUiData = [
   {
@@ -33,10 +38,14 @@ const UserUiData = [
     links: [
       { link: "Dashboard", to: "/student", icon: faHome },
       { link: "View Ideas", to: "/student/viewideas", icon: faLightbulb },
-      { link: "Upload Proposal ", to: "/student/uploadproposal", icon: faFile },
       {
-        link: "View Proposal",
-        to: "/student/viewproposal",
+        link: "Upload Proposal ",
+        to: "/student/uploadproposal",
+        icon: faFileUpload,
+      },
+      {
+        link: "Submitted Proposal",
+        to: "/student/submittedProposal",
         icon: faFileContract,
       },
       {
@@ -46,7 +55,7 @@ const UserUiData = [
       },
       {
         link: "View Project",
-        to: "/student/uploadproject",
+        to: "/student/viewproject",
         icon: faFolderOpen,
       },
     ],
@@ -54,28 +63,46 @@ const UserUiData = [
   {
     Role: "Supervisor",
     links: [
-      { link: "Dashboard" },
-      { link: "Upload Idea" },
-      { link: "" },
-      { link: "" },
+      { link: "Upload Idea", to: "/supervisor", icon: faLightbulb },
+      {
+        link: "Under Supervision",
+        to: "/supervisor/undersupervision",
+        icon: faCommentDots,
+      },
+      {
+        link: "View Mid Project",
+        to: "/supervisor/viewmidproject",
+        icon: faFileCode,
+      },
+      {
+        link: "View Final Project",
+        to: "/supervisor/viewfinalproject",
+        icon: faFileCode,
+      },
     ],
   },
   {
     Role: "Panel",
     links: [
-      { link: "Dashboard" },
-      { link: "" },
-      { link: "View all ideas" },
-      { link: "View all Projects" },
+      { link: "Set Deadline", to: "/panel", icon: faClock },
+      { link: "View Proposals", to: "/panel/proposals", icon: faFileAlt },
+      {
+        link: "View Defense Projects ",
+        to: "/panel/viewdefenseproject",
+        icon: faFileCode,
+      },
+      {
+        link: "View Old Proposals ",
+        to: "/panel/viewoldproposal",
+        icon: faFileCode,
+      },
     ],
   },
   {
     Role: "Company Owner",
     links: [
-      { link: "Dashboard" },
-      { link: "Manage User" },
-      { link: "View all ideas" },
-      { link: "View all Projects" },
+      { link: "Upload Idea", to: "/companyowner", icon: faLightbulb },
+      { link: "Selected By", to: "/companyowner/selectedby", icon: faUsers },
     ],
   },
 ];

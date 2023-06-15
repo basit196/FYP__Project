@@ -1,186 +1,308 @@
-import { default as ReactSelect } from "react-select";
 import "./uploadproposal.styles.scss";
-import { colourStyles } from "../../../component/filter component/filterstyle";
 import { useContext, useEffect, useState } from "react";
+import shortid from "shortid";
 import { UserContext } from "../../../context/user";
-import { ProposalContext } from "../../../context/proposalcontext";
 import {
-  addDataInExistingColAndDoc,
-  storage,
-} from "../../../utiles/firebase/firebase.utiles";
+  arrayUnion,
+  collection,
+  getDocs,
+  onSnapshot,
+  query,
+  updateDoc,
+  where,
+} from "firebase/firestore";
+import { db } from "../../../utiles/firebase/firebase.utiles";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faClose } from "@fortawesome/free-solid-svg-icons";
+import { DeadlineContext } from "../../../context/deadline";
+import UploadProposalForm from "./uploadproposalform/uploadproposalform.component";
+import { ProposalContext } from "../../../context/proposalcontext";
 
 const UploadProposal = () => {
-  const { user } = useContext(UserContext);
-  const { proposal } = useContext(ProposalContext);
-  const [proposaldata, setProposaldata] = useState({
-    comment: "",
-    createdBy: [],
-    file: "",
-    status: "pending",
-    supervisor: {},
-    timestamp: "",
-    title: "",
-  });
-  const [selectedFile, setSelectedFile] = useState(null);
-  const supervisor = user.filter((item) => item.role === "Supervisor");
-  const supervisorOptions = supervisor.map((item) => ({
-    value: item.id,
-    label: item.Name,
-  }));
-  useEffect(() => {
-    const maxId = proposal.reduce((max, currentproposal) => {
-      const proposalId = parseInt(currentproposal.id);
-      return proposalId > max ? proposalId : max;
-    }, 0);
-    const idnumber = maxId + 1;
-    setProposaldata((prevFormData) => ({
-      ...prevFormData,
-      id: idnumber.toString(),
-    }));
-  }, [proposal]);
-  const currentDate = new Date();
-  const year = currentDate.getFullYear();
-  const month = String(currentDate.getMonth() + 1).padStart(2, "0");
-  const day = String(currentDate.getDate()).padStart(2, "0");
-  const formattedDate = `${year}-${month}-${day}`;
+  const { currentUser } = useContext(UserContext);
+  const { deadline } = useContext(DeadlineContext);
+  const {
+    proposal,
+    proposalSubmitted,
+    setProposalSubmitted,
+    proposalfilled,
+    setProposalfilled,
+  } = useContext(ProposalContext);
+  const [selectedOption, setSelectedOption] = useState("");
+  const [groupID, setGroupID] = useState("");
+  const [showGroupCode, setShowGroupCode] = useState(false);
+  const [proposalError, setProposalError] = useState(false);
+  const [codeEnter, setCodeEnter] = useState(false);
+  const [code, setCode] = useState("");
+  const [noGroup, setNoGroup] = useState(false);
+  const [confirmation, setConfirmation] = useState(false);
+  const [optionError, setOptionError] = useState(false);
+  const [latestProposalDeadline, setLatestProposalDeadline] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const handleOptionChange = (event) => {
+    setOptionError(false);
+    setSelectedOption(event.target.value);
+  };
   const handlechange = (event) => {
-    const { name, value } = event.target;
-    setProposaldata({ ...proposaldata, [name]: value });
+    setNoGroup(false);
+    const value = event.target.value;
+    setCode(value);
   };
-  const handleOptionChange = (label, value) => {
-    setProposaldata({
-      ...proposaldata,
-      supervisor: { id: value, name: label },
-    });
-  };
-  const handleuploadchange = (event) => {
-    const { name } = event.target;
-    const reader = new FileReader();
-    const file = event.target.files[0];
-    const fileName = file.name;
-    reader.onload = (event) => {
-      setSelectedFile(file);
-      setProposaldata({ ...proposaldata, [name]: fileName });
-    };
 
-    reader.readAsDataURL(file);
+  const generateGroupID = () => {
+    const uniqueID = shortid.generate();
+    return uniqueID;
   };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setNoGroup(false);
+    setOptionError(false);
+    if (selectedOption === "") {
+      setOptionError(true);
+    } else {
+      setProposalError(false);
+      try {
+        const docRef = collection(db, "Proposals-data");
+        const querySnapshot = await getDocs(
+          query(
+            docRef,
+            where("createdBy", "array-contains", {
+              id: currentUser.id,
+            })
+          )
+        );
 
-    if (
-      !proposaldata.title ||
-      !proposaldata.file ||
-      !proposaldata.supervisor.id
-    ) {
-      console.log("Please fill in all the required fields.");
-      return;
-    }
-
-    try {
-      let pdf = "";
-      const uploadTask = storage
-        .ref(`Proposals/${proposaldata.file}`)
-        .put(selectedFile);
-      uploadTask.on(
-        "state_changed",
-        (snapshot) => {},
-        (error) => {
-          console.log(error);
-        },
-        () => {
-          uploadTask.snapshot.ref.getDownloadURL().then((url) => {
-            pdf = url;
-            addDataInExistingColAndDoc("Proposals-data", {
-              id: proposaldata.id || "",
-              file: pdf || "",
-              supervisor: proposaldata.supervisor || {},
-              comment: proposaldata.comment || "",
-              createdBy: proposaldata.createdBy || [],
-              status: proposaldata.status || "",
-              timestamp: formattedDate || "",
-              title: proposaldata.title || "",
-            });
-            // Perform any actions that depend on the image URL here
-          });
+        if (!querySnapshot.empty) {
+          setProposalError(true);
+        } else {
+          if (selectedOption === "individual") {
+            setProposalSubmitted(true);
+            setProposalfilled(false);
+            setGroupID(false);
+          } else if (selectedOption === "newGroup") {
+            const generatedGroupID = generateGroupID();
+            setShowGroupCode(true);
+            setGroupID(generatedGroupID);
+          } else if (selectedOption === "existingGroup") {
+            setCodeEnter(true);
+          }
         }
-      );
-
-      console.log("Proposal sent successfully!");
-      // Reset form data
-      setProposaldata({
-        id: "",
-        file: "",
-        supervisor: {},
-        comment: "",
-        createdBy: [],
-        status: "",
-        timestamp: "",
-        title: "",
-      });
-      document.getElementById("file").value = "";
-    } catch (error) {
-      console.error("Error submitting proposal:", error);
+      } catch (error) {
+        console.error("Error checking user in Proposals-data:", error);
+      }
     }
   };
-console.log(proposaldata);
+
+  const handleShowCode = () => {
+    setShowGroupCode(false);
+    setProposalSubmitted(true);
+    setProposalfilled(false);
+  };
+  const handleMatchCode = async () => {
+    const Islimitfull = proposal.find((item) => item.groupID === code);
+    try {
+      const docRef = collection(db, "Proposals-data");
+      const querySnapshot = await getDocs(
+        query(docRef, where("groupID", "==", code)),
+        where("toAddGroupMember", "==", true)
+      );
+
+      if (
+        !querySnapshot.empty &&
+        code !== "" &&
+        Islimitfull.createdBy.length !== Islimitfull.count
+      ) {
+        const doc = querySnapshot.docs[0];
+        await updateDoc(doc.ref, {
+          createdBy: arrayUnion({
+            id: currentUser.id,
+          }),
+        });
+        setProposalSubmitted(false);
+        setProposalfilled(false);
+        setCodeEnter(false);
+        setConfirmation(true);
+      } else {
+        setNoGroup(true);
+      }
+    } catch (error) {
+      console.error("Error matching code in Proposals-data:", error);
+    }
+  };
+
+  const handleSuccessfull = () => {
+    setProposalfilled(true);
+    setConfirmation(false);
+    setConfirmation(false);
+  };
+
+  const handleclose = () => {
+    setCodeEnter(false);
+    setShowGroupCode(false);
+  };
+  useEffect(() => {
+    const collectionRef = collection(db, "Deadline-data");
+    const unsubscribe = onSnapshot(
+      query(collectionRef, where("type", "==", "Proposal Deadline")),
+      (querySnapshot) => {
+        const updatedData = querySnapshot.docs.map((doc) => doc.data());
+        const lastObject = updatedData[updatedData.length - 1];
+        if (lastObject !== latestProposalDeadline) {
+          setLatestProposalDeadline(lastObject);
+          setLoading(false);
+        }
+      }
+    );
+    return () => unsubscribe();
+  }, [deadline]);
+
+  const isValidProposalDeadline =
+    latestProposalDeadline &&
+    new Date(latestProposalDeadline.deadlinedate) >= new Date();
   return (
     <div className="upload-proposal">
-      <form className="proposal-form" onSubmit={handleSubmit}>
-        <h2 className="proposal-form-heading">Upload Proposal</h2>
-        <div className="form-groups">
-          <div className="form-group">
-            <label htmlFor="title" className="form-group-label">
-              Title:
-            </label>
+      {loading ? (
+        <div className="proposals-form">
+          <div className="submitted-proposal-wait">
+            Loading <div className="spinner"></div>
+          </div>
+        </div>
+      ) : !isValidProposalDeadline ? (
+        <div className="proposals-form">
+          <p className="no-form-to-show">The Form is Currently Unavailable </p>
+        </div>
+      ) : (
+        proposalfilled && (
+          <form className="proposals-form" onSubmit={handleSubmit}>
+            <div className="proposals-form-container ">
+              <h2 className="proposals-form-heading">Proposal Submission</h2>
+              <div className="proposals-form-options">
+                <p className="proposals-form-options-heading">
+                  Choose an option
+                </p>
+                <div className="proposals-form-group-input">
+                  <input
+                    type="radio"
+                    id="individual"
+                    name="proposalOption"
+                    value="individual"
+                    checked={selectedOption === "individual"}
+                    onChange={handleOptionChange}
+                  />
+                  <label htmlFor="individual" className="proposals-form-label">
+                    Doing FYP on an individual basis
+                  </label>
+                </div>
+                <div className="proposals-form-group-input">
+                  <input
+                    type="radio"
+                    id="newGroup"
+                    name="proposalOption"
+                    value="newGroup"
+                    checked={selectedOption === "newGroup"}
+                    onChange={handleOptionChange}
+                  />
+                  <label htmlFor="newGroup" className="proposals-form-label">
+                    Create a New Group for Proposal Upload
+                  </label>
+                </div>
+                <div className="proposals-form-group-input">
+                  <input
+                    type="radio"
+                    id="existingGroup"
+                    name="proposalOption"
+                    value="existingGroup"
+                    checked={selectedOption === "existingGroup"}
+                    onChange={handleOptionChange}
+                  />
+                  <label
+                    htmlFor="existingGroup"
+                    className="proposals-form-label"
+                  >
+                    Join an Existing Proposal Group
+                  </label>
+                </div>
+              </div>
+              <div className="proposals-form-button-container">
+                <button type="submit" className="proposals-form-button">
+                  Proceed
+                </button>
+                {optionError && (
+                  <span className="proposals-form-error">
+                    Please select at least one option
+                  </span>
+                )}
+                {proposalError && (
+                  <span className="proposals-form-error">
+                    You have already submitted your proposal
+                  </span>
+                )}{" "}
+              </div>
+            </div>
+          </form>
+        )
+      )}
+      {showGroupCode && (
+        <div className="show-code">
+          <div className="updated-table-row-close">
+            <FontAwesomeIcon icon={faClose} onClick={handleclose} />
+          </div>
+          <div className="show-code-container">
+            <p className="show-code-paragraph">Your Group Code</p>
+            <h1 className="show-code-text">{groupID}</h1>
+            <button onClick={handleShowCode} className="proposals-form-button">
+              OK
+            </button>
+          </div>
+        </div>
+      )}
+      {codeEnter && (
+        <div className="show-code">
+          <div className="updated-table-row-close">
+            <FontAwesomeIcon icon={faClose} onClick={handleclose} />
+          </div>
+          <div className="show-code-container">
+            <p className="show-code-paragraph">Enter Group Code</p>
             <input
               id="myTextArea"
               className="textarea-upload-proposal"
               type="text"
               name="title"
-              value={proposaldata.title}
               onChange={handlechange}
               required
-            />
-          </div>
-          <div className="form-group">
-            <div className="form-group-items">
-              <div className="form-group-file">
-                <label htmlFor="file" className="form-group-label">
-                  Upload Proposal:
-                </label>
-                <input
-                  type="file"
-                  id="file"
-                  name="file"
-                  accept="application/pdf"
-                  onChange={handleuploadchange}
-                  required
-                />
-              </div>
-              <div>
-                <ReactSelect
-                  isSearchable
-                  onChange={(selectedOption) =>
-                    handleOptionChange(
-                      selectedOption.label,
-                      selectedOption.value
-                    )
-                  }
-                  options={supervisorOptions}
-                  className="select-drop-down"
-                  placeholder="Select Supervisor"
-                  styles={colourStyles}
-                />
-              </div>
-            </div>
+            />{" "}
+            <button onClick={handleMatchCode} className="proposals-form-button">
+              OK
+            </button>
+            {noGroup && (
+              <span className="proposals-form-error">
+                There is no such GroupID. Try again
+              </span>
+            )}
           </div>
         </div>
-        <button className="proposal-form-button" type="submit">
-          Submit
-        </button>
-      </form>
+      )}{" "}
+      {confirmation && (
+        <div className="show-code">
+          <div className="show-code-container">
+            <p className="show-code-paragraph">
+              You are added to the group successfully
+            </p>
+            <button
+              onClick={handleSuccessfull}
+              className="proposals-form-button"
+            >
+              OK
+            </button>
+          </div>
+        </div>
+      )}
+      {proposalSubmitted && (
+        <UploadProposalForm groupID={groupID} option={selectedOption} />
+      )}
     </div>
   );
 };
+
 export default UploadProposal;

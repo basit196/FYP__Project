@@ -8,6 +8,7 @@ import reportWebVitals from "./reportWebVitals";
 import { ProjectProvider } from "./context/projectcontext";
 import { UserProvider } from "./context/user";
 import { ProposalProvider } from "./context/proposalcontext";
+import { DeadlineProvider } from "./context/deadline";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -15,11 +16,13 @@ root.render(
     <BrowserRouter>
       <UserProvider>
         <IdeasProvider>
-          <ProposalProvider>
-            <ProjectProvider>
-              <App />
-            </ProjectProvider>
-          </ProposalProvider>
+          <DeadlineProvider>
+            <ProposalProvider>
+              <ProjectProvider>
+                <App />
+              </ProjectProvider>
+            </ProposalProvider>
+          </DeadlineProvider>
         </IdeasProvider>
       </UserProvider>
     </BrowserRouter>

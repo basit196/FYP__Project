@@ -59,21 +59,18 @@ const RegisterUser = () => {
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
+    setUsernameUsed(false);
   };
   //every Option of role Dropdown comes here change the formData
   const handleOptionChange = async (name) => {
     const lowercaseName = name.toLowerCase();
-    const selectedRole = Role.find((role) => role.label === name);
-    let usernameFormat = selectedRole.usernameFormat;
     if (lowercaseName === "role") {
       setRadioBtn(false);
-
-      setFormData({ ...formData, role: "", username: usernameFormat });
+      setFormData({ ...formData, role: "" });
     } else {
       setFormData({
         ...formData,
         role: name,
-        username: usernameFormat,
       });
     }
 
@@ -87,24 +84,10 @@ const RegisterUser = () => {
       name === "Company Owner"
     ) {
       setRadioBtn(false);
-      const userQuery = query(collection(db, "Users-Data"));
-      const querySnapshot = await getDocs(userQuery);
-      const updatedUserData = querySnapshot.docs.map((doc) => doc.data());
-      const Users = updatedUserData.filter((user) => user.role === name);
-      let userNumber = Users.length + 1;
-      const selectedRole = Role.find((role) => role.label === name);
-      let usernameFormat = selectedRole.usernameFormat;
-      const incrementedFormat = usernameFormat.replace(
-        "N",
-        userNumber.toString()
-      );
-      if (incrementedFormat) {
-        setFormData({
-          ...formData,
-          role: name,
-          username: incrementedFormat,
-        });
-      }
+      setFormData({
+        ...formData,
+        role: name,
+      });
     }
   };
   //when click on radio btns
@@ -112,34 +95,10 @@ const RegisterUser = () => {
     const { value } = event.target;
     if (value === "CS" || value === "SE") {
       const department = value.toUpperCase();
-      const userQuery = query(collection(db, "Users-Data"));
-      const querySnapshot = await getDocs(userQuery);
-      const updatedUserData = querySnapshot.docs.map((doc) => doc.data());
-      const studentUsers = updatedUserData.filter(
-        (user) => user.role === "Student" && user.department === value
-      );
-
-      let userNumber = studentUsers.length + 1;
-      const currentYear = new Date().getFullYear();
-      const fourYearsBackYear = currentYear - 4;
-
-      const selectedRole = Role.find((role) => role.label === "Student");
-      let usernameFormat = selectedRole.usernameFormat;
-      const updateddept = usernameFormat.replace("DE", department);
-      const incrementedFormat = updateddept.replace("N", userNumber.toString());
-      const updatedUserNameFormat = incrementedFormat.replace(
-        "Y",
-        fourYearsBackYear
-      );
-      if (updatedUserNameFormat) {
-        setFormData((prevFormData) => ({
-          ...prevFormData,
-          username: updatedUserNameFormat,
-          department: value,
-        }));
-      } else {
-        console.error("Invalid username format for the selected role");
-      }
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        department: department,
+      }));
     }
   };
   //every image upload file is come here
@@ -156,18 +115,6 @@ const RegisterUser = () => {
     reader.readAsDataURL(file);
   }
   //check the username format is valid
-  const isValidUsernameFormat = (username, value) => {
-    const roleName = value.charAt(0).toUpperCase() + value.slice(1);
-    const regex = Role.find((role) => role.label === roleName);
-    let usernameRegex;
-    if (value === "Student") {
-      usernameRegex = /(CS|SE)[1]\d{4}[2]\d+/;
-    } else {
-      const newRegex = regex.usernameFormat.replace(/N/g, "[0-9]+");
-      usernameRegex = new RegExp(`^${newRegex}$`);
-    }
-    return usernameRegex.test(username);
-  };
 
   //when the data is ready to sumbit
   const handleSubmit = async (event) => {
@@ -175,63 +122,60 @@ const RegisterUser = () => {
     setUsernameUsed(false);
     setUsenameInvalid(false);
 
-    if (isValidUsernameFormat(formData.username, formData.role)) {
-      //find that the username is exist or not
-      const findExistingUserName = user
-        .filter((key) => key.role === formData.role)
-        .some((item) => item.username === formData.username);
+    //find that the username is exist or not
+const findExistingUserName = user.some((item) => {
+  const lowercaseUsername =
+    typeof item.username === "string" ? item.username.toLowerCase() : undefined;
 
-      if (!findExistingUserName) {
-        try {
-          // Validate username format
-          let image = "";
-          if (selectedFile) {
-            const uploadTask = storage
-              .ref(`images/${selectedFile.name}`)
-              .put(selectedFile);
-            await uploadTask;
-            const imageUrl = await uploadTask.snapshot.ref.getDownloadURL();
-            image = imageUrl;
-          }
-
-          await addDataInExistingColAndDoc("Users-Data", {
-            id: formData.id,
-            Name: formData.name,
-            username: formData.username,
-            password: formData.password,
-            Email: formData.email,
-            department: formData.department,
-            image: image ? image : "",
-            role: formData.role,
-          });
-          // Perform any actions that depend on the image URL here
-
-          setRegisterUser(true);
-          setSelectedFile(null);
-          console.log("User registered successfully!");
-          // Reset form data
-          setFormData({
-            id: "",
-            name: "",
-            username: "",
-            email: "",
-            password: "",
-            image: "",
-            department: "",
-            role: "",
-          });
-          setDropdownValue(null);
-        } catch (error) {
-          console.error("Error registering user:", error);
+  return lowercaseUsername === formData.username.toLowerCase();
+});    if (!findExistingUserName) {
+      try {
+        // Validate username format
+        let image = "";
+        if (selectedFile) {
+          const uploadTask = storage
+            .ref(`images/${selectedFile.name}`)
+            .put(selectedFile);
+          await uploadTask;
+          const imageUrl = await uploadTask.snapshot.ref.getDownloadURL();
+          image = imageUrl;
         }
-      } else {
-        setUsernameUsed(true);
+
+        await addDataInExistingColAndDoc("Users-Data", {
+          id: formData.id,
+          Name: formData.name,
+          username: formData.username,
+          password: formData.password,
+          Email: formData.email,
+          department: formData.department,
+          image: image ? image : "",
+          role: formData.role,
+        });
+        // Perform any actions that depend on the image URL here
+
+        setRegisterUser(true);
+        setSelectedFile(null);
+        console.log("User registered successfully!");
+        // Reset form data
+        setFormData({
+          id: "",
+          name: "",
+          username: "",
+          email: "",
+          password: "",
+          image: "",
+          department: "",
+          role: "",
+        });
+        setDropdownValue(null);
+      } catch (error) {
+        console.error("Error registering user:", error);
       }
     } else {
-      setUsenameInvalid(true);
+      setUsernameUsed(true);
     }
   };
-
+  console.log(formData);
   const colourStyles = {
     placeholder: (defaultStyles) => {
       return {
@@ -295,11 +239,6 @@ const RegisterUser = () => {
                 user name is Taken
               </label>
             )}
-            {usenameInvalid && (
-              <label htmlFor="username" className="invaild-username">
-                username format is Invalid
-              </label>
-            )}
           </div>
           <input
             type="email"
@@ -309,7 +248,6 @@ const RegisterUser = () => {
             onChange={handleChange}
             className="register-user-input"
           />
-
           <input
             type="password"
             name="password"

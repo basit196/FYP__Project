@@ -6,7 +6,7 @@ const DashboardPage = () => {
   return (
     <div className="DashboardPage">
       <div className="DashboardPage-heading">
-        <h3>Welcome to Dashboard</h3>
+        <h3>Welcome to the FYP Portal</h3>
       </div>
       <div className="DashboardPage-content">
         <Dashboardcarddirective array={DashboardcarddirectiveData} />

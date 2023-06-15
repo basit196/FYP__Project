@@ -1,23 +1,55 @@
 @import "../../../component/utilities/colors.scss";
 @import "../../../component/utilities/box-shadow.scss";
-.deadline-announcement-container{
+
+.deadline-announcement-container {
     display: flex;
     flex-direction: column;
     gap: 2rem;
-    padding: 4rem 2rem;
+    padding: 2rem 2rem;
+    height: 100%;
 }
+
+.deadline-announcement-content {
+    display: flex;
+    flex-direction: column;
+    background-color: $Color-White;
+    height: 100%;
+    gap: 2rem;
+    padding: 3rem;
+    overflow: auto;
+
+    &::-webkit-scrollbar {
+        width: 10px;
+        height: 8px;
+
+    }
+
+    &::-webkit-scrollbar-track {
+        background-color: $Color-Light-Grey;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: $Color-Grey;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+        background-color: $Color-Dark-Grey;
+
+    }
+
+}
+
 .deadline-announcement {
     display: flex;
-    background-color:$Color-White;
     padding: 1rem;
-    gap: 1rem;
+    background-color: $Color-Light-Grey;
     border-radius: 8px;
     box-shadow: $dashboard-card-box-shawdow;
 
     .announcement-icon {
         flex: 0 0 auto;
         font-size: 24px;
-        color:$Color-Blue;
+        color: $Color-Blue;
     }
 
     .announcement-content {

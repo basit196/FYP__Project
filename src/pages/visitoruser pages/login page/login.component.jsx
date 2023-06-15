@@ -45,6 +45,15 @@ const Login = () => {
         } else if (User.role === "Student") {
           navigate("/student");
           setCurrentUser(JSON.parse(sessionStorage.getItem("User")) || {});
+        } else if (User.role === "Panel") {
+          navigate("/panel");
+          setCurrentUser(JSON.parse(sessionStorage.getItem("User")) || {});
+        } else if (User.role === "Supervisor") {
+          navigate("/supervisor");
+          setCurrentUser(JSON.parse(sessionStorage.getItem("User")) || {});
+        } else if (User.role === "Company Owner") {
+          navigate("/companyowner");
+          setCurrentUser(JSON.parse(sessionStorage.getItem("User")) || {});
         }
       } else {
         setInvalid(true);

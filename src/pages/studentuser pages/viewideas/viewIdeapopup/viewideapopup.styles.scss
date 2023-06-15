@@ -1,0 +1,259 @@
+@import "../../../../component/utilities/colors.scss";
+@import "../../../../component/utilities/box-shadow.scss";
+
+.view-idea-popup {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    z-index: 99999999767899799;
+    width: 100%;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+
+    &-wait {
+        display: flex;
+        font-size: 1rem;
+        color: $Color-White;
+        gap: .5rem;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &-content {
+        display: flex;
+        width: 60rem;
+        background-color: $Color-White;
+        height: 35rem;
+        border-radius: 10px;
+        box-shadow: $Box-Shadow-dark;
+        animation: scaleAnimation 1s ease-in-out;
+        overflow: hidden;
+    }
+
+    &-image {
+        height: 100%;
+        width: 19rem;
+        position: relative;
+        background-position: center;
+        background-size: cover;
+
+    }
+
+    &-field {
+        color: $Color-White;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        color: white;
+        gap: 1rem;
+        width: 100%;
+        transform: translate(-50%, -60%);
+        padding: 1rem;
+
+        &-text {
+            font-size: 1.8rem;
+        }
+    }
+
+    &-detail {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        padding: 2rem;
+        justify-content: space-between;
+    }
+
+    &-main {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    &-text {
+        font-size: 1rem;
+        color: $Color-bg;
+    }
+
+    &-heading {
+        font-size: 1.2rem;
+        font-weight: 500;
+        text-transform: capitalize;
+    }
+
+    &-paragraph {
+        font-size: .9rem;
+        line-height: 1.4;
+        word-spacing: 1px;
+        letter-spacing: 1px;
+        text-align: justify;
+        line-break: strict;
+        word-wrap: break-word;
+        height: 25rem;
+        overflow: auto;
+        padding-right: 1rem;
+
+        &::-webkit-scrollbar {
+            width: 10px;
+            height: 8px;
+
+        }
+
+        &::-webkit-scrollbar-track {
+            background-color: $Color-Light-Grey;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: $Color-Grey;
+        }
+
+        &::-webkit-scrollbar-thumb:hover {
+            background-color: $Color-Dark-Grey;
+
+        }
+    }
+
+    &-btns-container {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        width: 100%;
+
+    }
+
+    &-btns {
+        display: flex;
+        gap: 1rem;
+        width: 100%;
+        justify-content: flex-end;
+    }
+
+    &-button {
+        background-color: $Color-Primary;
+        color: $Color-White;
+        border: 0;
+        padding: 0.5rem 2rem;
+        font-size: 1rem;
+        transition: all .1s;
+        border-radius: 20rem;
+
+        &-disable {
+            color: $Color-Dark-Grey;
+            background-color: $Color-Light-Grey;
+            border: 0;
+            padding: 0.5rem 2rem;
+            font-size: 1rem;
+            cursor: not-allowed;
+            border-radius: 20rem;
+        }
+
+        &:hover {
+            color: $Color-Primary;
+            background-color: $Color-White;
+        }
+    }
+
+    &-no {
+        color: $Color-Dark-Grey;
+        background-color: $Color-Light-Grey;
+        border: 0;
+        padding: 0.5rem 1rem;
+        font-size: 1rem;
+        align-self: flex-end;
+        border-radius: .5rem;
+    }
+
+    &-yes {
+        background-color: $Color-Primary;
+        color: $Color-White;
+        border: 0;
+        padding: 0.5rem 1rem;
+        font-size: 1rem;
+        align-self: flex-end;
+        border-radius: .5rem;
+    }
+
+    &-student-avaliable {
+        font-size: .8rem;
+        color: red;
+        align-self: flex-end;
+
+    }
+
+    &-selected-by {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 80%;
+        left: 0;
+        gap: .5rem;
+        color: $Color-bg;
+        width: 100%;
+        align-items: center;
+    }
+
+    &-students {
+        display: flex;
+        gap: .5rem;
+        align-items: center;
+        color: $Color-White;
+        flex-wrap: wrap;
+    }
+
+    &-side-image {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+        width: 100%;
+        align-items: center;
+    }
+}
+
+
+@keyframes scaleAnimation {
+    0% {
+        transform: scale(0);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.add-student {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    z-index: 99999999767899799;
+    width: 100%;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background-color: rgb(0 0 0 / 45%);
+
+    &-container {
+        display: flex;
+        width: max-content;
+        gap: 1rem;
+        flex-direction: column;
+        background-color: $Color-White;
+        padding: 1.5rem;
+        height: max-content;
+        border-radius: 10px;
+        box-shadow: $Box-Shadow-dark;
+        animation: scaleAnimation 1s ease-in-out;
+        overflow: hidden;
+    }
+
+    &-icon {
+        align-self: flex-end;
+    }
+}

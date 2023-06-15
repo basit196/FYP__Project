@@ -6,16 +6,17 @@ import { ReactComponent as FYPLogo } from "../../../assests/fyp.svg";
 import { faPencil } from "@fortawesome/free-solid-svg-icons";
 import { UserContext } from "../../../context/user";
 import SelectPicture from "../../../component/selectpicture/selectpicture";
+import { ProjectContext } from "../../../context/projectcontext";
 
 const UserNavigation = ({ item }) => {
   const { currentUser, setCurrentUser, image, setimage } =
     useContext(UserContext);
-  const [showprofile, setShowProfile] = useState(false);
+  const { setFilterProjects } = useContext(ProjectContext);
   const location = useLocation();
+  const handleChange = () => {
+    setFilterProjects([]);
+  };
 
-  function profileShow() {
-    setShowProfile(!showprofile);
-  }
   const handleLogout = async () => {
     setCurrentUser({});
     sessionStorage.clear();
@@ -41,6 +42,7 @@ const UserNavigation = ({ item }) => {
                     : "sidebar-link"
                 }
                 to={item.to}
+                onClick={handleChange}
               >
                 <FontAwesomeIcon icon={item.icon} />
                 {item.link}

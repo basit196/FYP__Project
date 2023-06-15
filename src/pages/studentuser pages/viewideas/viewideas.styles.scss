@@ -11,6 +11,10 @@
     &-scroll {
         height: 30rem;
         overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+
 
         &::-webkit-scrollbar {
             display: none;
@@ -92,6 +96,7 @@
         &-title {
             display: flex;
             flex-direction: column;
+            gap: .5rem;
 
             &-text {
                 text-transform: capitalize;
@@ -102,14 +107,20 @@
         }
 
         &-paragraph {
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             color: $Color-Black;
             font-weight: 400;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            width: 40rem;
+
         }
 
         &-field {
             display: flex;
             flex-direction: column;
+            gap: .3rem;
 
             &-content {
                 display: flex;
@@ -121,11 +132,13 @@
             &-heading {
                 color: $Color-Primary;
                 font-weight: 400;
+                font-size: .9rem;
             }
 
             &-text {
                 color: $Color-Secondary;
                 font-weight: 600;
+
 
             }
         }
@@ -137,6 +150,8 @@
 
         &-text {
             color: $Color-Black;
+            text-transform: capitalize;
+
         }
 
         &-filtering {
@@ -147,14 +162,23 @@
 
         }
 
+        &-status-container {
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+        }
+
         &-status {
             display: flex;
             flex-direction: column;
-            gap: 1rem;
+            gap: 3rem;
         }
 
         &-supervisor {
-            font-size: .8rem;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
     }
 
@@ -173,17 +197,41 @@
             background-color: $Color-Secondary;
         }
     }
+
+    &-status {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    &-student {
+        font-size: .8rem;
+        color: $Color-Blue;
+    }
+
+    &-pagination {
+        align-self: flex-end;
+    }
 }
 
 .status-color {
     color: rgb(189, 1, 1);
     font-weight: 600;
     text-transform: capitalize;
-    font-size: .9rem;
+    font-size: .8rem;
 }
 
 .select-drop-down {
     width: 12rem;
     color: $Color-bg;
 
+}
+
+.no-data-message {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
 }

@@ -1,5 +1,4 @@
 export const UpdateRequestpProjectData = [
-
   {
     id: "1",
     label: "projectCategory",
@@ -14,8 +13,8 @@ export const UpdateRequestpProjectData = [
   },
   {
     id: "2",
-    label: "Department",
-    value: "Department",
+    label: "department",
+    value: "department",
     children: [
       { value: null, label: "Department" },
       { value: "CS", label: "CS" },

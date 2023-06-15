@@ -1,0 +1,56 @@
+@import "../../../../component/utilities/colors.scss";
+
+
+.tab-container {
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    overflow: hidden;
+    padding: 2rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    height: 100%;
+}
+
+.tab-header {
+    display: flex;
+    justify-content: center;
+    border-bottom: 2px solid $Color-Light-Grey;
+    gap: 4rem;
+}
+
+.tab-item {
+    padding: .5rem 4rem;
+    cursor: pointer;
+    color: $Color-Primary;
+    transition: background-color 0.3s ease;
+    font-weight: 600;
+
+    &:hover {
+        background-color: $Color-White;
+    }
+
+    &.active {
+        background-color: $Color-White;
+        border-bottom: 2px solid  $Color-bg;
+    }
+}
+
+.tab-content {
+    height: 100%;
+}
+
+.tab-pane {
+    display: none;
+    
+
+    &.active {
+        display: block;
+        height: 100%;
+    }
+}
+
+.tab-content-item {
+    margin-bottom: 20px;
+}

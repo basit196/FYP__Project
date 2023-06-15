@@ -51,7 +51,9 @@ const Projects = () => {
       paginate(currentPage + 1);
     }
   };
-
+  const postData = currentPosts.filter(
+    (item) => item.IsDefense === "Final" && item.status === "Completed"
+  );
   return (
     <div className="project-container">
       <div className="filter-data-container">
@@ -63,7 +65,7 @@ const Projects = () => {
         <Title text="Projects" />
         <div className="table-content">
           {matchesFound ? (
-            currentPosts.map((post) => {
+            postData.map((post) => {
               return <ProjectTable key={post.id} tableData={post} />;
             })
           ) : (

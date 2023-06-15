@@ -7,6 +7,9 @@ import { useContext, useEffect } from "react";
 import { UserContext } from "./context/user";
 import { collection, onSnapshot, query, where } from "firebase/firestore";
 import { db } from "./utiles/firebase/firebase.utiles";
+import Panel from "./users/panel.component";
+import Supervisor from "./users/supervisor.component";
+import CompanyOwner from "./users/companyowner.component";
 
 const App = () => {
   const { currentUser, setCurrentUser } = useContext(UserContext);
@@ -57,7 +60,16 @@ const App = () => {
             <Route path="admin/*" element={<Admin />} />
           )}
           {currentUser.role === "Student" && (
-            <Route path="student/*" element={<Student  />} />
+            <Route path="student/*" element={<Student />} />
+          )}
+          {currentUser.role === "Panel" && (
+            <Route path="panel/*" element={<Panel />} />
+          )}
+          {currentUser.role === "Supervisor" && (
+            <Route path="supervisor/*" element={<Supervisor />} />
+          )}
+          {currentUser.role === "Company Owner" && (
+            <Route path="companyowner/*" element={<CompanyOwner />} />
           )}
         </>
       )}

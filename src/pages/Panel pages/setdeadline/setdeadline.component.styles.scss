@@ -1,0 +1,63 @@
+@import "../../../component/utilities/colors.scss";
+
+.set-deadline {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    height: 100%;
+    align-items: center;
+
+
+    &-form {
+        display: flex;
+        flex-direction: column;
+        background-color: $Color-White;
+        padding: 2rem 4rem;
+        height: 30rem;
+        width: 40rem;
+        gap: 2rem;
+        justify-content: center;
+
+        &__title {
+            font-size: 1.5rem;
+            font-weight: 500;
+        }
+
+        &__input-group {}
+
+        &__label {
+            display: block;
+            font-size: 1rem;
+        }
+
+        &__input {
+            width: 100%;
+            padding: 8px;
+            font-size: 1rem;
+            border-radius: 4px;
+            border: 1px solid $Color-Grey;
+            font-size: 1rem;
+
+            &:focus {
+                outline: none;
+
+            }
+        }
+
+        &__button {
+            padding: .5rem 1rem;
+            font-size: 1rem;
+            background-color: $Color-Primary;
+            color: $Color-White;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        &__dateerror {
+            display: flex;
+            color: red;
+            font-size: .9rem;
+        }
+    }
+}

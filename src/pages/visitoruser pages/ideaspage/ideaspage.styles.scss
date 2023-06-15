@@ -24,22 +24,6 @@
 
     }
 
-    .text-container {
-        padding: 0 10rem;
-
-        @include medium {
-            padding: 0 100px;
-        }
-
-        @include small2 {
-            padding: 0 80px;
-        }
-
-        @include small3 {
-            padding: 0 40px;
-        }
-    }
-
 
 
     .idea-book-images-container {

@@ -1,20 +1,28 @@
 import React, { createContext, useEffect, useState } from "react";
-import {
-  addcollectionAndDocument,
-  getColllectionData,
-  getProjectData,
-} from "../utiles/firebase/firebase.utiles";
-import ProjectTableData from "../Data/tableData";
+import { getColllectionData } from "../utiles/firebase/firebase.utiles";
 
 export const ProjectContext = createContext({
   project: [],
   filterprojects: [],
+  setFilterProjects: () => {},
   setSelectedOption: () => {},
+  projectRadiofilled: true,
+  projectSubmittedForm: false,
+  setProjectSubmittedFrom: () => {},
+  setProjectRadiofilled: () => {},
+  selectedDefenseOption: "",
+  isDefenseOptionSelected: true,
+  setIsDefenseOptionSelected: () => {},
+  setSelectedDefenseOption: () => {},
 });
 export const ProjectProvider = ({ children }) => {
   const [project, setProject] = useState([]);
   const [filterprojects, setFilterProjects] = useState([]);
-
+  const [projectUpdate, setProjectUpdate] = useState(false);
+  const [projectRadiofilled, setProjectRadiofilled] = useState(true);
+  const [projectSubmittedForm, setProjectSubmittedFrom] = useState(false);
+  const [selectedDefenseOption, setSelectedDefenseOption] = useState("");
+  const [isDefenseOptionSelected, setIsDefenseOptionSelected] = useState(true);
   const handlechildProjectfiltering = (
     item,
     filterprojects,
@@ -68,18 +76,28 @@ export const ProjectProvider = ({ children }) => {
       handleparentProjectfiltering(item, filterprojects, setFilterProjects);
     }
   };
+
   useEffect(() => {
-    const getProjectMap = async () => {
-      // await addcollectionAndDocument("Project-data", ProjectTableData);
-      const ProjectMap = await getColllectionData("Project-data");
-      setProject(ProjectMap);
-    };
-    getProjectMap();
-  }, []);
+    const unsubscribe = getColllectionData(
+      "Project-data",
+      setProject,
+      setProjectUpdate
+    );
+    return () => unsubscribe();
+  }, [projectUpdate]);
   const values = {
     project,
     filterprojects,
     setSelectedOption,
+    projectSubmittedForm,
+    setProjectSubmittedFrom,
+    setProjectRadiofilled,
+    projectRadiofilled,
+    selectedDefenseOption,
+    setSelectedDefenseOption,
+    isDefenseOptionSelected,
+    setIsDefenseOptionSelected,
+    setFilterProjects,
   };
 
   return (
